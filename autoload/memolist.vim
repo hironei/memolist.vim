@@ -77,7 +77,7 @@ if !exists('g:memolist_memo_date')
 endif
 
 if !exists('g:memolist_filename_date')
-  let g:memolist_filename_date = "%Y-%m-%d-"
+  let g:memolist_filename_date = "-%Y-%m-%d"
 endif
 
 if !exists('g:memolist_title_pattern')
@@ -233,7 +233,7 @@ function! memolist#new_with_meta(title, tags, categories)
   if get(g:, 'memolist_filename_prefix_none', 0) != 0
     let file_name = s:esctitle(items['title'])
   else
-    let file_name = strftime(g:memolist_filename_date) . s:esctitle(items['title'])
+    let file_name = s:esctitle(items['title']) . strftime(g:memolist_filename_date)
   endif
   if stridx(items['title'], '.') == -1
     let file_name = file_name . "." . g:memolist_memo_suffix
